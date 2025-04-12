@@ -18,11 +18,9 @@ function App() {
     setForecast([]);
 
     try {
-      const res = await axios.get(`http://localhost:8000/weather?city=${city}`);
+      const res = await axios.get(`http://localhost:8000/?city=${city}`);
       setWeather(res.data);
-      const forecastres = await axios.get(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=7a7686edd13bc44742feb516c1fc9ce9`
-      );
+      const forecastres = await axios.get(`http://localhost:8000/forecast?city=London`);
 
       const select = forecastres.data.list.filter((_, idx) => idx % 8 === 0);
       setForecast(select);
